@@ -59,10 +59,9 @@ body {
 .header {
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
-  padding: 0rem;
+  padding: 0rem 0;
   position: sticky;
   top: 0;
-  margin-bottom: -2.5rem;
   z-index: 100;
   backdrop-filter: blur(10px);
 }
@@ -81,14 +80,30 @@ body {
   align-items: center;
 }
 
-.logo-image {
-  height: 90px; /* changed from 60px */
+/* Enhanced logo transitions */
+.logo-image,
+.hero-logo-image {
+  height: 90px;
   width: auto;
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(1);
 }
 
-.logo-image:hover {
+.logo-image:hover,
+.hero-logo-image:hover {
   transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Hero logo specific styles */
+.hero-logo-image {
+  height: 180px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-logo-image:hover {
+  transform: scale(1.02);
+  filter: brightness(1.05);
 }
 
 .theme-toggle {
@@ -103,18 +118,22 @@ body {
   font-size: 1.25rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  color: #000000;
 }
 
 .theme-toggle:hover {
   background: var(--bg-tertiary);
   transform: scale(1.05);
 }
+[data-theme="dark"] .theme-toggle {
+  color: #ffffff; 
+}
 
 /* Main Content */
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: -3rem;
 }
 
 .hero-section {
@@ -124,16 +143,6 @@ body {
 
 .hero-logo {
   margin-bottom: -2rem;
-}
-
-.hero-logo-image {
-  height: 200px;
-  width: auto;
-  transition: transform 0.3s ease;
-}
-
-.hero-logo-image:hover {
-  transform: scale(1.02);
 }
 
 .app-subtitle {
@@ -301,8 +310,8 @@ body {
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0rem;
   font-family: inherit;
 }
 
@@ -385,19 +394,25 @@ body {
   gap: 0.5rem;
 }
 
+/* Fixed suggestion actions */
 .suggestion-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .suggestion-actions button,
 .suggestion-actions a {
-  gap: 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .favorite-btn,
-.recipe-btn {
-  padding: 0.5rem 1rem;
+.recipe-btn,
+.another-btn {
+  padding: 0.75rem 1.25rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
@@ -406,14 +421,16 @@ body {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   font-family: inherit;
+  border: none;
+  min-width: fit-content;
 }
 
 .favorite-btn {
   background: var(--success);
   color: white;
-  border: none;
 }
 
 .favorite-btn:hover {
@@ -432,21 +449,9 @@ body {
   transform: translateY(-1px);
 }
 
-/* Another suggestion button */
 .another-btn {
   background: var(--accent-secondary);
   color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: inherit;
 }
 
 .another-btn:hover {
@@ -705,11 +710,11 @@ body {
   }
 
   .hero-logo-image {
-    height: 150px; 
+    height: 120px;
   }
 
   .logo-image {
-    height: 90px;
+    height: 72px;
   }
 
   .app-subtitle {
@@ -756,6 +761,19 @@ body {
     padding: 0.2rem 0.6rem;
   }
 
+  /* Mobile button fixes */
+  .suggestion-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .favorite-btn,
+  .recipe-btn,
+  .another-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   /* Footer responsive */
   .footer-main {
     flex-direction: column;
@@ -783,24 +801,15 @@ body {
 
 @media (max-width: 480px) {
   .hero-logo-image {
-    height: 160px; 
+    height: 90px;
   }
 
   .logo-image {
-    height: 80px; 
+    height: 60px;
   }
 
   .feature-card {
     padding: 1rem;
-  }
-
-  .suggestion-actions {
-    flex-direction: column;
-  }
-
-  .favorite-btn,
-  .recipe-btn {
-    justify-content: center;
   }
 
   .favorite-item .suggestion-image {

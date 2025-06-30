@@ -4,9 +4,10 @@ import { useState } from "react"
 import { getMoodBasedMeals } from "../data/mealData"
 import { Brain, Salad, DollarSign, Sparkles, Heart, Flame, RefreshCw, BookOpen } from "lucide-react"
 
-const MoodSelector = ({ selectedMood, setSelectedMood, setCurrentSuggestion, addToFavorites, currentSuggestion }) => {
+const MoodSelector = ({ selectedMood, setSelectedMood, addToFavorites }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [meals, setMeals] = useState([])
+  const [currentSuggestion, setCurrentSuggestion] = useState(null)
 
   const moods = [
     { value: "lazy", label: "Lazy", icon: Brain },

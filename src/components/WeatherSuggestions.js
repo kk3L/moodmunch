@@ -4,7 +4,7 @@ import { useState } from "react"
 import { getWeatherBasedMeals } from "../data/mealData"
 import { Sun, Snowflake, CloudRain, Cloud, Heart, BookOpen, RefreshCw } from "lucide-react"
 
-const WeatherSuggestions = ({ setCurrentSuggestion, addToFavorites, currentSuggestion }) => {
+const WeatherSuggestions = ({ addToFavorites }) => {
   const [weather, setWeather] = useState("")
   const [suggestion, setSuggestion] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -28,7 +28,6 @@ const WeatherSuggestions = ({ setCurrentSuggestion, addToFavorites, currentSugge
       if (weatherMeals.length > 0) {
         const randomMeal = weatherMeals[Math.floor(Math.random() * weatherMeals.length)]
         setSuggestion(randomMeal)
-        setCurrentSuggestion(randomMeal)
       }
     } catch (error) {
       console.error("Error fetching weather meals:", error)
@@ -41,12 +40,8 @@ const WeatherSuggestions = ({ setCurrentSuggestion, addToFavorites, currentSugge
     if (meals.length > 0) {
       const randomMeal = meals[Math.floor(Math.random() * meals.length)]
       setSuggestion(randomMeal)
-      setCurrentSuggestion(randomMeal)
     }
   }
-
-  // Remove the auto-initialization useEffect completely
-  // The component will now start empty until user makes a selection
 
   return (
     <div className="feature-card">

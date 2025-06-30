@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { getRandomMeal } from "../data/mealData"
-import { Dice6, Heart, BookOpen, Dices } from "lucide-react"
+import { Dice6, Target, Heart, BookOpen } from "lucide-react"
 
-const RandomMeal = ({ setCurrentSuggestion, addToFavorites, currentSuggestion }) => {
+const RandomMeal = ({ addToFavorites }) => {
   const [randomSuggestion, setRandomSuggestion] = useState(null)
   const [isSpinning, setIsSpinning] = useState(false)
 
@@ -18,7 +18,6 @@ const RandomMeal = ({ setCurrentSuggestion, addToFavorites, currentSuggestion })
       setTimeout(() => {
         if (meal) {
           setRandomSuggestion(meal)
-          setCurrentSuggestion(meal)
         }
         setIsSpinning(false)
       }, 1500)
@@ -43,7 +42,7 @@ const RandomMeal = ({ setCurrentSuggestion, addToFavorites, currentSuggestion })
         onClick={generateRandomMeal}
         disabled={isSpinning}
       >
-        <Dices className={`random-icon ${isSpinning ? "spinning" : ""}`} size={20} />
+        <Target className={`random-icon ${isSpinning ? "spinning" : ""}`} size={20} />
         {isSpinning ? "Choosing..." : "Random Meal"}
       </button>
 

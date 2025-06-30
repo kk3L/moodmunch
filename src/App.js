@@ -13,7 +13,6 @@ function App() {
   const [theme, setTheme] = useState("light")
   const [selectedMood, setSelectedMood] = useState("")
   const [favorites, setFavorites] = useState([])
-  const [currentSuggestion, setCurrentSuggestion] = useState(null)
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("moodmunch-theme")
@@ -58,7 +57,11 @@ function App() {
       <main className="main-content">
         <div className="hero-section">
           <div className="hero-logo">
-            <img src="/moodmunch-logo.png" alt="MoodMunch" className="hero-logo-image" />
+            <img
+              src={theme === "light" ? "/moodmunch-logo.png" : "/moodmunch-logo-dark.png"}
+              alt="MoodMunch"
+              className="hero-logo-image"
+            />
           </div>
           <p className="app-subtitle">
             Get food suggestions based on your mood, weather, or pure randomness — because decision fatigue is real!
@@ -66,25 +69,11 @@ function App() {
         </div>
 
         <div className="features-grid">
-          <MoodSelector
-            selectedMood={selectedMood}
-            setSelectedMood={setSelectedMood}
-            setCurrentSuggestion={setCurrentSuggestion}
-            addToFavorites={addToFavorites}
-            currentSuggestion={currentSuggestion}
-          />
+          <MoodSelector selectedMood={selectedMood} setSelectedMood={setSelectedMood} addToFavorites={addToFavorites} />
 
-          <WeatherSuggestions
-            setCurrentSuggestion={setCurrentSuggestion}
-            addToFavorites={addToFavorites}
-            currentSuggestion={currentSuggestion}
-          />
+          <WeatherSuggestions addToFavorites={addToFavorites} />
 
-          <RandomMeal
-            setCurrentSuggestion={setCurrentSuggestion}
-            addToFavorites={addToFavorites}
-            currentSuggestion={currentSuggestion}
-          />
+          <RandomMeal addToFavorites={addToFavorites} />
 
           <FavoritesList favorites={favorites} removeFromFavorites={removeFromFavorites} />
         </div>

@@ -7,7 +7,11 @@ const Header = ({ theme, toggleTheme }) => {
     <header className="header">
       <div className="header-content">
         <div className="logo">
-          <img src="/moodmunch-logo.png" alt="MoodMunch" className="logo-image" />
+          <img
+            src={theme === "light" ? "/moodmunch-logo.png" : "/moodmunch-logo-dark.png"}
+            alt="MoodMunch"
+            className="logo-image"
+          />
         </div>
 
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">

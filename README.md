@@ -1,5 +1,3 @@
-Sure! Here’s the complete README file for your MoodMunch project:
-
 # MoodMunch Documentation
 
 ## Overview
